@@ -1,0 +1,33 @@
+name: "Deploy to VPS"
+on:
+  push:
+    branches: 
+      - agenda
+jobs: 
+  build_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Download app"
+        uses: actions/checkout@v4
+   
+      - name: "copy file via ssh password"
+        uses: appleboy/scp-action@v0.1.7  
+        with:
+          host: 137.131.144.82
+          username: "ubuntu"
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          source: "app"
+          target: "/var/www/html"  
+        
+      - name: "executing remote ssh commands to install packages"
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 137.131.144.82
+          username: ubuntu
+          password: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            chgrp -R www-data /var/www/html/*
+

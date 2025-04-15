@@ -11,9 +11,12 @@ ssh-keygen -t ed25519 -C "email@mail.com"
 # set yout remote access
 git remote set-url origin git@github.com:yourusername/agenda.git
 
+# test your remote access
+ssh -T git@github.com
+# the answer should be:
+# Hi User! You've successfully authenticated, but GitHub does not provide shell access.
 
-
-# start git
+# start git for news projects
 git init
 
 # add files on project
@@ -21,7 +24,7 @@ git init
 git add .
 
 # salve the changes
-git commit . -m "IFSP"
+git commit . -m "message"
 
 # shows informations about changes
 git status
@@ -36,4 +39,12 @@ git rm file1.txt
 git pull main
 
 # push files from your local project to github
-git push agenda
+git push origin agenda
+
+# create your workflow 
+mkdir -p .github/workflows
+
+# add ssh private key of your server
+# In your project enter 
+# Settings --> Secrets and variables --> Actions
+# Include your SSH Private Key
