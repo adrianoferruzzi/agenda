@@ -18,8 +18,8 @@ jobs:
           username: "ubuntu"
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          source: "agenda/app/index.html"
-          target: "/var/www/html"  
+          source: "app/index.html"
+          target: "/var/www/html/"  
         
       - name: "executing remote ssh commands to install packages"
         uses: appleboy/ssh-action@v1
