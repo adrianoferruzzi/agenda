@@ -18,7 +18,7 @@ jobs:
           username: "ubuntu"
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          source: "index.html"
+          source: "app/*"
           target: "/var/www/html/"  
         
       - name: "executing remote ssh commands to install packages"
@@ -30,4 +30,6 @@ jobs:
           port: 22
           script: |
             chgrp -R www-data /var/www/html/*
+            mv /var/www/html/app/* /var/www/html/
+
 
