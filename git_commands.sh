@@ -48,3 +48,7 @@ mkdir -p .github/workflows
 # In your project enter 
 # Settings --> Secrets and variables --> Actions
 # Include your SSH Private Key
+
+# Caso seja necessário abrir a porta 80 use os comandos
+# O firewalld não funcionou, foi preciso usar o Iptables
+sudo iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
