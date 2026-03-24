@@ -1,5 +1,5 @@
 -- Procedimento de criação da base de dados
-CREATE DATABASE agendadb;
+CREATE DATABASE IF NOT EXISTS agendadb;
 
 -- Criar usuario do database "agenda"
 CREATE USER 'agenda'@'localhost' IDENTIFIED BY '12345678';
